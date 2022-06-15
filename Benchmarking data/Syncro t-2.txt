@@ -1,0 +1,65 @@
+anuj@iiitd-ThinkCentre-M900:~/Desktop/SummerInternship/synchrobench-master/c-cpp/bin$ ./MUTEX-lazy-list -t 2
+Set type     : lazy linked list
+Length       : 10000
+Initial size : 256
+Thread num   : 2
+Value range  : 2147483647
+Seed         : 0
+Update rate  : 20
+Lock alg     : 2
+Alternate    : 0
+Effective    : 1
+Type sizes   : int=4/long=8/ptr=8/word=8
+Initializing STM
+Adding 256 entries to set
+Set size     : 9943
+Creating thread 0
+Creating thread 1
+STARTING...
+STOPPING...
+Thread 0
+  #add        : 10000
+    #added    : 2
+  #remove     : 10000
+    #removed  : 2
+  #contains   : 10000
+  #found      : 138
+  #aborts     : 0
+    #lock-r   : 0
+    #lock-w   : 0
+    #val-r    : 0
+    #val-w    : 0
+    #val-c    : 0
+    #inv-mem  : 0
+  Max retries : 0
+Thread 1
+  #add        : 10000
+    #added    : 9858
+  #remove     : 10000
+    #removed  : 178
+  #contains   : 10000
+  #found      : 138
+  #aborts     : 0
+    #lock-r   : 0
+    #lock-w   : 0
+    #val-r    : 0
+    #val-w    : 0
+    #val-c    : 0
+    #inv-mem  : 0
+  Max retries : 0
+Set size      : 19623 (expected: 19623)
+Duration      : 0 (ms)
+#txs          : 60000 (inf / s)
+#read txs     : 49960 (inf / s)
+  #contains   : 20000 (inf / s)
+#eff. upd rate: 16.733333 
+#update txs   : 10040 (inf / s)
+  #upd trials : 40000 (inf / s)
+#aborts       : 0 (-nan / s)
+  #lock-r     : 0 (-nan / s)
+  #lock-w     : 0 (-nan / s)
+  #val-r      : 0 (-nan / s)
+  #val-w      : 0 (-nan / s)
+  #val-c      : 0 (-nan / s)
+  #inv-mem    : 0 (-nan / s)
+Max retries   : 0

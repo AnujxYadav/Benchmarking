@@ -1,0 +1,28 @@
+anuj@iiitd-ThinkCentre-M900:~/Desktop/SummerInternship/TESTING/ASCYLIB/bin$ ./lb-ll_lazy -n 1
+Set type     : linked list
+Duration     : 1000
+Initial size : 1024
+Nb threads   : 1
+Value range  : 2048
+Seed         : 0
+Update rate  : 20
+Lock alg     : 2
+Alternate    : 0
+Effective    : 1
+Type sizes   : int=4/long=8/ptr=8/word=8
+Adding 100000 entries to set
+Initializing STM
+Adding 100000 entries to set
+
+Set size     : 95137
+Creating threads: 0,
+STARTING...
+STOPPING...
+Set size      : 168723 (expected: 177803)
+Duration      : 0 (ms)
+#txs          : 300000 (inf / s)
+#read txs     : 208830 (inf / s)
+  #contains   : 100000 (inf / s)
+#eff. upd rate: 30.390000 
+#update txs   : 91170 (inf / s)
+  #upd trials : 200000 (inf / s

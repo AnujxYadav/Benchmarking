@@ -1,0 +1,32 @@
+
+# Intel
+#Intel Turbo Boost is a feature that automatically raises CPU operating frequency when demanding tasks are running. It can be permanently disabled in BIOS. 
+sudo echo 0 > /sys/devices/system/cpu/intel_pstate/no_turbo
+
+#Disable hyper threading
+
+
+#If we don’t set the scaling governor policy to be performance kernel can decide that it’s better to save power and throttle. Setting scaling_governor to ‘performance’ helps to avoid sub-nominal clocking
+for i in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+do
+  sudo echo performance > $i
+done
+
+
+#Set cpu affinity
+
+
+#Set process priority
+
+
+#Disable address space randomization
+sudo echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
+
+#drop cache
+sudo echo 3 | sudo tee /proc/sys/vm/drop_caches
+sync
+
+
+
+#cmd
+sudo /home/anuj/Desktop/SummerInternship/TESTING/ASCYLIB/bin/lb-ll_lazy
