@@ -1,0 +1,49 @@
+anuj@hmaster:~/Internship/Benchmarking/synchrobench-master/c-cpp/bin$ ./MUTEX-lazy-list -t 1
+Set type     : lazy linked list
+Length       : 10000
+Initial size : 256
+Thread num   : 1
+Value range  : 2147483647
+Seed         : 0
+Update rate  : 20
+Lock alg     : 2
+Alternate    : 0
+Effective    : 1
+Type sizes   : int=4/long=8/ptr=8/word=8
+Initializing STM
+Adding 256 entries to set
+Set size     : 9943
+Creating thread 0
+STARTING...
+TIME ---> 2096.0000
+Thread 0
+  #add        : 333333
+    #added    : 286196
+  #remove     : 333333
+    #removed  : 47158
+  #contains   : 333333
+  #found      : 47763
+  #aborts     : 0
+    #lock-r   : 0
+    #lock-w   : 0
+    #val-r    : 0
+    #val-w    : 0
+    #val-c    : 0
+    #inv-mem  : 0
+  Max retries : 0
+Set size      : 248981 (expected: 248981)
+Duration      : 2096000 (ms)
+#txs          : 999999 (477.098760 / s)
+#read txs     : 666645 (318.055821 / s)
+  #contains   : 333333 (159.032920 / s)
+#eff. upd rate: 33.335433 
+#update txs   : 333354 (159.042939 / s)
+  #upd trials : 666666 (318.065840 / s)
+#aborts       : 0 (0.000000 / s)
+  #lock-r     : 0 (0.000000 / s)
+  #lock-w     : 0 (0.000000 / s)
+  #val-r      : 0 (0.000000 / s)
+  #val-w      : 0 (0.000000 / s)
+  #val-c      : 0 (0.000000 / s)
+  #inv-mem    : 0 (0.000000 / s)
+Max retries   : 0

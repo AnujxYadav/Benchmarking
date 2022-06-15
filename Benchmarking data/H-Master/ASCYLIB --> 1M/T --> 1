@@ -1,0 +1,28 @@
+anuj@hmaster:~/Internship/Benchmarking/ASCYLIB/bin$ ./lb-ll_lazy 
+Set type     : linked list
+Duration     : 1000
+Initial size : 1024
+Nb threads   : 1
+Value range  : 2048
+Seed         : 0
+Update rate  : 20
+Lock alg     : 2
+Alternate    : 0
+Effective    : 1
+Type sizes   : int=4/long=8/ptr=8/word=8
+Adding 1000000 entries to set
+Initializing STM
+Adding 1000000 entries to set
+Set size     : 9943
+Creating threads: 0,
+STARTING...
+test
+TIME ---> 2165.0000
+Set size      : 248981 (expected: 251794)
+Duration      : 2165000 (ms)
+#txs          : 999999 (461.893303 / s)
+#read txs     : 669458 (309.218476 / s)
+  #contains   : 333333 (153.964434 / s)
+#eff. upd rate: 33.054133 
+#update txs   : 330541 (152.674827 / s)
+  #upd trials : 666666 (307.928868 / s)

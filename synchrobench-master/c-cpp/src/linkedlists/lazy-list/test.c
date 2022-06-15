@@ -32,7 +32,7 @@
 #define SEARCH_PATH "../data/search.csv"  //path for searching for 'search' values
 //END OF MODIFIED PART BY MADHAVA
 
-#define SIZE 10000 //defining size for all array operations (for the file size)
+#define SIZE 1000000 //defining size for all array operations (for the file size)
 
 typedef struct barrier {
   pthread_cond_t complete;
@@ -144,11 +144,6 @@ void *test(void *data) {
   int* search_vals = arr_ptr[2];
 
   int iterator = 0;
-  for(iterator = 0; iterator < 53; iterator++){
-      printf("VALUEEEEEE!!! %d\n", update_vals[iterator]);
-  }
-
-  printf("%d\n", update_vals[SIZE-1]);
 	
   //END OF EDITED PORTION BY MADHAVA
 
@@ -158,39 +153,42 @@ void *test(void *data) {
 
     
     i = 0, j = 0, k = 0;
-    while(i<SIZE || j<SIZE || k<SIZE){
+    while(i<SIZE/3 || j<SIZE/3 || k<SIZE/3){
+      
+        // if(i%10000 == 0)
+        //   printf("%d %d %d\n", i, j, k);
         //insert
-        if(i < SIZE){
+        if(i < SIZE/3){
           val = update_vals[i];
           if (set_add_l(d->set, val, TRANSACTIONAL)) {
-              printf("added : %ld\n", val);
+              // printf("added : %ld\n", val);
               d->nb_added++;
           }
-          printf("tried adding : %ld\n", val);
+          // printf("tried adding : %ld\n", val);
           d->nb_add++;
           i++;
         }
 
         //remove
-        if(j < SIZE){
+        if(j < SIZE/3){
             val = delete_vals[j];
             if (set_remove_l(d->set, val, TRANSACTIONAL)) {
-                printf("removed : %ld\n", val);
+                // printf("removed : %ld\n", val);
                 d->nb_removed++;
             } 
-            printf("tried removing : %ld\n", val);
+            // printf("tried removing : %ld\n", val);
             d->nb_remove++;
             j++;
         }
 
         //contains
-        if(k < SIZE){
+        if(k < SIZE/3){
             val = search_vals[k];
             if (set_contains_l(d->set, val, TRANSACTIONAL)) {
-                printf("FOUND : %ld\n", val);
+                // printf("FOUND : %ld\n", val);
                 d->nb_found++;
             }
-            printf("tried finding : %ld\n", val);
+            // printf("tried finding : %ld\n", val);
             d->nb_contains++;
             k++;	
         }
@@ -485,9 +483,9 @@ int main(int argc, char **argv)
 
 
   i = 0;
-  while (i < SIZE) {
+  while (i < SIZE/100) {
     val = init_data[i];
-    printf("%ld ANUJ\n", val);
+    // printf("%ld ANUJ\n", val);
     if (set_add_l(set, val, 0)) {
     //   i++;
     }
@@ -500,6 +498,7 @@ int main(int argc, char **argv)
   barrier_init(&barrier, nb_threads + 1);
   pthread_attr_init(&attr);
   pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
+  time_t start2 = time(NULL);
   for (i = 0; i < nb_threads; i++) {
     printf("Creating thread %d\n", i);
     data[i].first = last;
@@ -538,16 +537,16 @@ int main(int argc, char **argv)
   barrier_cross(&barrier);
 	
   printf("STARTING...\n");
-//   gettimeofday(&start, NULL);
-//   if (duration > 0) {
-//     nanosleep(&timeout, NULL);
-//   } else {
-//     sigemptyset(&block_set);
-//     sigsuspend(&block_set);
-//   }
-//   AO_store_full(&stop, 1);
-//   gettimeofday(&end, NULL);
-  printf("STOPPING...\n");
+  // gettimeofday(&start, NULL);
+  // if (duration > 0) {
+  //   nanosleep(&timeout, NULL);
+  // } else {
+  //   sigemptyset(&block_set);
+  //   sigsuspend(&block_set);
+  // }
+  // AO_store_full(&stop, 1);
+  // gettimeofday(&end, NULL);
+  // printf("STOPPING...\n");
 	
   /* Wait for thread completion */
   for (i = 0; i < nb_threads; i++) {
@@ -556,8 +555,12 @@ int main(int argc, char **argv)
       exit(1);
     }
   }
+
+  printf("TIME ---> %.4f\n", (double)(time(NULL) - start2));
+  // duration = time(NULL) - start;
+
 	
-  duration = (end.tv_sec * 1000 + end.tv_usec / 1000) - (start.tv_sec * 1000 + start.tv_usec / 1000);
+  duration = (int)((time(NULL) - start2)*1000);
   aborts = 0;
   aborts_locked_read = 0;
   aborts_locked_write = 0;
